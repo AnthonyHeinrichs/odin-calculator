@@ -1,3 +1,44 @@
-h1 {
-  color: blue;
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.calcMain {
+  margin-top: 100px;
+}
+
+.calcInput {
+  background-color: #F1DFFF;
+  height: 108px;
+  width: 360px;
+  margin-left: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.calcBody {
+  width: 400px;
+  height: 600px;
+  background-color: #352E2E;
+  border-radius: 20px;
+}
+
+.mainButtons {
+  color: white;
+  font-size: 24px;
+  width: 170px;
+  height: 53px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+}
+
+.clearButton {
+  background-color: #005671;
+}
+
+.delButton {
+  background-color: #00949D;
+  margin-left: 10px;
 }

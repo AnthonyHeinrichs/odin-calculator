@@ -4,6 +4,13 @@
   align-items: center;
 }
 
+.centerButtons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
 .calcMain {
   margin-top: 100px;
 }
@@ -30,6 +37,7 @@
   width: 170px;
   height: 53px;
   margin-top: 20px;
+  margin-bottom: 10px;
   border: none;
   border-radius: 5px;
 }
@@ -41,4 +49,15 @@
 .delButton {
   background-color: #00949D;
   margin-left: 10px;
+}
+
+.numButtons {
+  width: 80px;
+  height: 80px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #5E5063;
+  color: white;
+  font-size: 32px;
 }

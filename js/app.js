@@ -11,8 +11,7 @@ window.onload = function() {
 
   let addItUp = 0
 
-  const calculate = () => {
-    addItUp = 0
+  const calculate = (props) => {
 
     let steps = showCalcSteps.innerText.slice(0, -1)
     let splitSteps = steps.split(/([\+\-\÷\×])/)
@@ -87,9 +86,17 @@ window.onload = function() {
   })
 
   equals.addEventListener('click', () => {
-    showCalcSteps.innerText = showCalcSteps.innerText 
-    calculate() 
-
-    didCalculate = true
+    showCalcSteps.innerText = showCalcSteps.innerText
+    splitSteps = showCalcSteps.innerText.split(/([\+\-\÷\×\=])/)
+    console.log(splitSteps[0])
+    
+    if (splitSteps.length <= 3) {
+      addItUp = splitSteps[0]
+      showCalcResults.innerText = splitSteps[0]
+      didCalculate = true
+    } else {
+      calculate() 
+      didCalculate = true
+    }
   })
 }

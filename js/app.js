@@ -9,8 +9,41 @@ window.onload = function() {
 
   let didCalculate = false
 
+  let addItUp = 0
+
   const calculate = () => {
-    console.log('calculate')
+    addItUp = 0
+
+    let steps = showCalcSteps.innerText.slice(0, -1)
+    let splitSteps = steps.split(/([\+\-\÷\×])/)
+  
+    for (let i = 0; i <= splitSteps.length; i++) {
+      if (i % 2 === 0) {
+        splitSteps[i] = parseFloat(splitSteps[i])
+      }
+    }
+
+    for (let i = 0; i <= splitSteps.length; i++) {
+      if (i % 2 !== 0) {
+        switch (splitSteps[i]) {
+          case '+': 
+            addItUp += (splitSteps[i - 1] + splitSteps[i + 1])
+            break
+          case '-':
+            addItUp += (splitSteps[i - 1] - splitSteps[i + 1])
+            break
+          case '÷':
+            addItUp =+ (splitSteps[i - 1] / splitSteps[i + 1])
+            break
+          case '×':
+            addItUp =+ (splitSteps[i - 1] * splitSteps[i + 1])
+            break
+          default:
+            break
+        }
+      }
+      showCalcResults.innerText = addItUp
+    }
   }
 
   Array.from(numButtons).forEach( (button) => {
@@ -20,10 +53,9 @@ window.onload = function() {
 
       if (didCalculate) {
         steps = ''
+        addItUp = 0
         didCalculate = false
       }
-
-      console.log(didCalculate)
       
       if (isNaN(steps[steps.length - 1 ]) && 
         !((steps[steps.length - 1 ]) === '.')) {
@@ -41,7 +73,7 @@ window.onload = function() {
       let steps = showCalcSteps.innerText
 
       if (didCalculate) {
-        showCalcSteps.innerText = 'Add calculation results back up here'
+        showCalcSteps.innerText = addItUp + ' ' + button.innerText
         didCalculate = false
       }
 
@@ -55,10 +87,8 @@ window.onload = function() {
   })
 
   equals.addEventListener('click', () => {
-    showCalcSteps.innerText = showCalcSteps.innerText + ' ' + '='
-
+    showCalcSteps.innerText = showCalcSteps.innerText 
     calculate() 
-    showCalcResults.innerText = 'Add calculation'
 
     didCalculate = true
   })

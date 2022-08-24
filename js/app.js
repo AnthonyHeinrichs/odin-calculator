@@ -16,7 +16,7 @@ window.onload = function() {
     props ? addItUp = props : addItUp = 0
 
     let steps = showCalcSteps.innerText.slice(0, -1)
-    let splitSteps = steps.split(/([\+\-\÷\×])/)
+    let splitSteps = steps.split(/([\+\﹣\÷\×])/)
   
     for (let i = 0; i <= splitSteps.length; i++) {
       if (i % 2 === 0) {
@@ -30,7 +30,7 @@ window.onload = function() {
           case '+': 
             addItUp += (splitSteps[i - 1] + splitSteps[i + 1])
             break
-          case '-':
+          case '﹣':
             addItUp += (splitSteps[i - 1] - splitSteps[i + 1])
             break
           case '÷':
@@ -50,14 +50,13 @@ window.onload = function() {
   Array.from(numButtons).forEach( (button) => {
     button.addEventListener('click', () => {
       let steps = showCalcSteps.innerText
-      let checkForDecimal = steps.split(/[\+\-\÷\×]/).pop()
+      let checkForDecimal = steps.split(/[\+\﹣\÷\×]/).pop()
 
       if (didCalculate) {
-        steps = ''
         addItUp = 0
         didCalculate = false
       }
-      
+
       if (isNaN(steps[steps.length - 1 ]) && 
         !((steps[steps.length - 1 ]) === '.')) {
           showCalcSteps.innerText = steps + ' ' + button.innerText
@@ -72,7 +71,8 @@ window.onload = function() {
   Array.from(funButtons).forEach ((button) => {
     button.addEventListener('click', () => {
       let steps = showCalcSteps.innerText
-
+      let splitSteps = showCalcSteps.innerText.split(/([\+\﹣\÷\×\=])/)
+    
       if (didCalculate) {
         showCalcSteps.innerText = addItUp + ' ' + button.innerText
         didCalculate = false
@@ -84,15 +84,20 @@ window.onload = function() {
         buttonText = button.innerText
         showCalcSteps.innerText = showCalcSteps.innerText + ' ' + buttonText + ' '
       }
+
+      if (splitSteps.length === 3) {
+        calculate()
+        showCalcSteps.innerText = addItUp + ' ' + button.innerText
+        didCalculate = true
+      }
     })
   })
 
   equals.addEventListener('click', () => {
-    showCalcSteps.innerText = showCalcSteps.innerText
-    splitSteps = showCalcSteps.innerText.split(/([\+\-\÷\×\=])/)
-    console.log(splitSteps[0])
+    let splitSteps = showCalcSteps.innerText.split(/([\+\﹣\÷\×\=])/)
+    console.log(splitSteps)
     
-    if (splitSteps.length <= 3) {
+    if (splitSteps[splitSteps.length - 1] === '') {
       addItUp = splitSteps[0]
       showCalcResults.innerText = splitSteps[0]
       didCalculate = true

@@ -92,3 +92,18 @@ p {
   color: white;
   font-size: 32px;
 }
+
+.numButtons:hover {
+  background-color: #433948;
+  cursor: pointer;
+}
+
+.clearButton:hover {
+  background-color: #004357;
+  cursor: pointer;
+}
+
+.delButton:hover {
+  background-color: #006f75;
+  cursor: pointer;
+}

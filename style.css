@@ -93,7 +93,7 @@ p {
   font-size: 32px;
 }
 
-.numButtons:hover {
+.nums:hover {
   background-color: #433948;
   cursor: pointer;
 }

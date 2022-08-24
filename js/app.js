@@ -13,6 +13,8 @@ window.onload = function() {
 
   const calculate = (props) => {
 
+    props ? addItUp = props : addItUp = 0
+
     let steps = showCalcSteps.innerText.slice(0, -1)
     let splitSteps = steps.split(/([\+\-\÷\×])/)
   

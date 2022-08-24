@@ -1,5 +1,7 @@
 window.onload = function() {
 
+  const clearNum = document.getElementById('clear')
+  const deleteNum = document.getElementById('delete')
   const showCalcSteps = document.getElementById('calcSteps')
   const showCalcResults = document.getElementById('calcResults')
   const equals = document.getElementById('equals')
@@ -12,7 +14,6 @@ window.onload = function() {
   let addItUp = 0
 
   const calculate = (props) => {
-
     props ? addItUp = props : addItUp = 0
 
     let steps = showCalcSteps.innerText.slice(0, -1)
@@ -46,6 +47,13 @@ window.onload = function() {
       showCalcResults.innerText = addItUp
     }
   }
+
+  clearNum.addEventListener('click', () => {
+    showCalcResults.innerText = 0
+    showCalcSteps.innerText = ''
+    addItUp = 0
+    didCalculate = false
+  })
 
   Array.from(numButtons).forEach( (button) => {
     button.addEventListener('click', () => {

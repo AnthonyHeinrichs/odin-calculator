@@ -1,16 +1,16 @@
 window.onload = function() {
 
-  const clearNum = document.getElementById('clear')
-  const deleteNum = document.getElementById('delete')
+  const clearNum = document.getElementById('c')
+  const deleteNum = document.getElementById('Backspace')
   const showCalcSteps = document.getElementById('calcSteps')
   const showCalcResults = document.getElementById('calcResults')
-  const equals = document.getElementById('equals')
+  const equals = document.getElementById('Enter')
 
   const numButtons = document.getElementsByClassName('numButtons')
   const funButtons = document.getElementsByClassName('funButtons')
 
+  const nonNumOrFunButtons = [clearNum, deleteNum, equals]
   let didCalculate = false
-
   let addItUp = 0
 
   const calculate = (props) => {
@@ -67,7 +67,7 @@ window.onload = function() {
     }
   })
 
-  Array.from(numButtons).forEach( (button) => {
+  Array.from(numButtons).forEach((button) => {
     button.addEventListener('click', () => {
       let steps = showCalcSteps.innerText
       let checkForDecimal = steps.split(/[\+\﹣\÷\×]/).pop()
@@ -129,4 +129,29 @@ window.onload = function() {
       }
     }
   })
+
+  Array.from(nonNumOrFunButtons).forEach((button) => {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === button.id) {
+        button.click()
+      }
+    })
+  })
+
+  Array.from(numButtons).forEach((button) => {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === button.id) {
+        button.click()
+      }
+    })
+  })
+
+  Array.from(funButtons).forEach((button) => {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === button.id) {
+        button.click()
+      }
+    })
+  })
+  
 }

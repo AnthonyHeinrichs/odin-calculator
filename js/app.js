@@ -44,7 +44,11 @@ window.onload = function() {
             break
         }
       }
-      showCalcResults.innerText = addItUp
+      if (!isFinite(addItUp)) {
+        showCalcResults.innerText = 'To infinity and beyond!'
+      } else {
+        showCalcResults.innerText = addItUp
+      }
     }
   }
 

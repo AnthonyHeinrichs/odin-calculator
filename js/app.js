@@ -110,15 +110,16 @@ window.onload = function() {
   })
 
   equals.addEventListener('click', () => {
-    let splitSteps = showCalcSteps.innerText.split(/([\+\﹣\÷\×\=])/)
+    let splitSteps = showCalcSteps.innerText.split(/([\+\﹣\÷\×])/).filter(Boolean)
 
-    if (didCalculate) {
+    if (didCalculate || 
+      /([\+\﹣\÷\×])/.test(splitSteps[splitSteps.length - 1])) {
       return
     } else {
       if (splitSteps.length === 1) {
         showCalcResults.innerHTML = splitSteps[0] 
       } else {
-        showCalcSteps.innerText = showCalcSteps.innerText + ' ' + '=' + ' '
+        showCalcSteps.innerText = showCalcSteps.innerText + ' ' + '='
         calculate() 
         didCalculate = true
       }

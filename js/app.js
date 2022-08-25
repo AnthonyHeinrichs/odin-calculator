@@ -55,23 +55,32 @@ window.onload = function() {
     didCalculate = false
   })
 
+  deleteNum.addEventListener('click', () => {
+    if (didCalculate) {
+      return
+    } else {
+    showCalcSteps.innerText = showCalcSteps.innerText.slice(0, -1)
+    }
+  })
+
   Array.from(numButtons).forEach( (button) => {
     button.addEventListener('click', () => {
       let steps = showCalcSteps.innerText
       let checkForDecimal = steps.split(/[\+\﹣\÷\×]/).pop()
 
       if (didCalculate) {
+        showCalcSteps.innerText = button.innerText
         addItUp = 0
         didCalculate = false
-      }
-
-      if (isNaN(steps[steps.length - 1 ]) && 
-        !((steps[steps.length - 1 ]) === '.')) {
-          showCalcSteps.innerText = steps + ' ' + button.innerText
-      } else if ((button.innerText === '.') && checkForDecimal.indexOf('.') === -1) {
-        showCalcSteps.innerText = steps + button.innerText
-      } else if ((button.innerText !== '.')) {
-        showCalcSteps.innerText = steps + button.innerText
+      } else {
+        if (isNaN(steps[steps.length - 1 ]) && 
+          !((steps[steps.length - 1 ]) === '.')) {
+            showCalcSteps.innerText = steps + ' ' + button.innerText
+        } else if ((button.innerText === '.') && checkForDecimal.indexOf('.') === -1) {
+          showCalcSteps.innerText = steps + button.innerText
+        } else if ((button.innerText !== '.')) {
+          showCalcSteps.innerText = steps + button.innerText
+        }
       }
     })
   })
@@ -80,7 +89,7 @@ window.onload = function() {
     button.addEventListener('click', () => {
       let steps = showCalcSteps.innerText
       let splitSteps = showCalcSteps.innerText.split(/([\+\﹣\÷\×\=])/)
-    
+
       if (didCalculate) {
         showCalcSteps.innerText = addItUp + ' ' + button.innerText
         didCalculate = false
@@ -96,22 +105,23 @@ window.onload = function() {
       if (splitSteps.length === 3) {
         calculate()
         showCalcSteps.innerText = addItUp + ' ' + button.innerText
-        didCalculate = true
       }
     })
   })
 
   equals.addEventListener('click', () => {
     let splitSteps = showCalcSteps.innerText.split(/([\+\﹣\÷\×\=])/)
-    console.log(splitSteps)
-    
-    if (splitSteps[splitSteps.length - 1] === '') {
-      addItUp = splitSteps[0]
-      showCalcResults.innerText = splitSteps[0]
-      didCalculate = true
+
+    if (didCalculate) {
+      return
     } else {
-      calculate() 
-      didCalculate = true
+      if (splitSteps.length === 1) {
+        showCalcResults.innerHTML = splitSteps[0] 
+      } else {
+        showCalcSteps.innerText = showCalcSteps.innerText + ' ' + '=' + ' '
+        calculate() 
+        didCalculate = true
+      }
     }
   })
 }

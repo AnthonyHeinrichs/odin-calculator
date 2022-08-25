@@ -2,7 +2,6 @@
 
 body {
   font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-  overflow: hidden;
 }
 
 p {
@@ -112,7 +111,7 @@ p {
 
 footer {
   position: absolute;
-  width: 100%;
+  width: 99%;
   bottom: 0;
   height: 2.5rem;
 }

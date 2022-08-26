@@ -47,7 +47,7 @@ window.onload = function() {
       if (!isFinite(addItUp)) {
         showCalcResults.innerText = 'To infinity and beyond!'
       } else {
-        showCalcResults.innerText = addItUp
+        showCalcResults.innerText = parseFloat(addItUp.toFixed(4))
       }
     }
   }
@@ -121,7 +121,8 @@ window.onload = function() {
       return
     } else {
       if (splitSteps.length === 1) {
-        showCalcResults.innerHTML = splitSteps[0] 
+        let result = parseFloat(splitSteps[0])
+        showCalcResults.innerHTML = result.toFixed(4)
       } else {
         showCalcSteps.innerText = showCalcSteps.innerText + ' ' + '='
         calculate() 

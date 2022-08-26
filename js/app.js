@@ -122,7 +122,7 @@ window.onload = function() {
     } else {
       if (splitSteps.length === 1) {
         let result = parseFloat(splitSteps[0])
-        showCalcResults.innerHTML = result.toFixed(4)
+        showCalcResults.innerHTML = result.toFixed(2)
       } else {
         showCalcSteps.innerText = showCalcSteps.innerText + ' ' + '='
         calculate() 
